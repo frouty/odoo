@@ -3,29 +3,30 @@
 # * account
 # 
 # Translators:
-# Yoshi Tashiro <tashiro@roomsfor.hk>, 2016
-# Martin Trigaux, 2016
-# 高木正勝 <masakatsu.takagi@pro-spire.co.jp>, 2016
-# Kohji Katayama <kohji.katayama@dreamyard.co.jp>, 2016
-# Masayuki Takesue <m_takesue@nifty.com>, 2016
-# ook rio <riokoko5@gmail.com>, 2016
 # NOKA Shigekazu <shigekazu.noka@gmail.com>, 2016
-# Takahiro MURAKAMI <murakami@date-yakkyoku.com>, 2016
 # Manami Hashi <manami@roomsfor.hk>, 2016
+# ook rio <riokoko5@gmail.com>, 2016
+# Kohji Katayama <kohji.katayama@dreamyard.co.jp>, 2016
+# Takahiro MURAKAMI <murakami@date-yakkyoku.com>, 2016
+# Masayuki Takesue <m_takesue@nifty.com>, 2016
 # kent_ocean <ke.tanabe@gmail.com>, 2016
 # SHIMIZU Taku <shimizu.taku@gmail.com>, 2016
-# Norimichi Sugimoto <norimichi.sugimoto@tls-ltd.co.jp>, 2016
+# 高木正勝 <masakatsu.takagi@pro-spire.co.jp>, 2016
 # Kazuki Eda <edak1209@gmail.com>, 2016
+# Norimichi Sugimoto <norimichi.sugimoto@tls-ltd.co.jp>, 2016
+# Martin Trigaux, 2017
 # Tim Siu Lai <tl@roomsfor.hk>, 2017
-# 前園義博 <yoshihiro.maezono@pro-spire.co.jp>, 2017
+# 前園義博 <yoshihiro.maezono@pro-spire.co.jp>, 2018
 # Takuya Sawada <takuya@tuntunkun.com>, 2018
+# Yoshi Tashiro <tashiro@roomsfor.hk>, 2018
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-26 08:44+0000\n"
-"PO-Revision-Date: 2017-05-26 08:44+0000\n"
-"Last-Translator: Takuya Sawada <takuya@tuntunkun.com>, 2018\n"
+"PO-Revision-Date: 2016-09-07 09:15+0000\n"
+"Last-Translator: Yoshi Tashiro <tashiro@roomsfor.hk>, 2018\n"
 "Language-Team: Japanese (https://www.transifex.com/odoo/teams/41243/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3083,7 +3084,7 @@ msgstr "請求書を作成"
 #: code:addons/account/static/src/xml/account_reconciliation.xml:81
 #, python-format
 msgid "Create model"
-msgstr ""
+msgstr "モデル作成"
 
 #. module: account
 #. openerp-web
@@ -3458,6 +3459,24 @@ msgstr "請求月末起算"
 #: selection:account.payment.term.line,option:0
 msgid "Day(s) after the invoice date"
 msgstr "請求日起算"
+
+#. module: account
+#: model:res.company,overdue_msg:base.main_company
+msgid ""
+"Dear Sir/Madam,\n"
+"\n"
+"Our records indicate that some payments on your account are still due. Please find details below.\n"
+"If the amount has already been paid, please disregard this notice. Otherwise, please forward us the total amount stated below.\n"
+"If you have any queries regarding your account, Please contact us.\n"
+"\n"
+"Thank you in advance for your cooperation.\n"
+"Best Regards,"
+msgstr ""
+"ご担当者様\n"
+"\n"
+"弊社レコードによるとお客様のアカウントで未払の請求書があるようです。下記の詳細をご確認の上、速やかに未払額をお支払いいただけますよう、お願い申し上げます。もし入れ違いで既にお支払済でしたら、こちらのご案内は無視されてください。\n"
+"\n"
+"ご不明点等ございましたら、ご連絡いただけますようお願いいたします。"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_move_line_debit
@@ -4037,7 +4056,7 @@ msgstr "為替差"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_res_company_currency_exchange_journal_id
 msgid "Exchange Gain or Loss Journal"
-msgstr ""
+msgstr "為替差損益仕訳帳"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_full_reconcile_exchange_move_id
@@ -4742,7 +4761,7 @@ msgstr ""
 msgid ""
 "If you unreconcile transactions, you must also verify all the actions that "
 "are linked to those transactions because they will not be disabled"
-msgstr ""
+msgstr "トランザクションの消込を取り消す場合、トランザクション自体は取り消されませんので、それらの有効性も確認してください。"
 
 #. module: account
 #: model:ir.model.fields,help:account.field_account_invoice_payment_term_id
@@ -6062,7 +6081,7 @@ msgstr "その他処理"
 #: code:addons/account/static/src/xml/account_reconciliation.xml:82
 #, python-format
 msgid "Modify models"
-msgstr ""
+msgstr "モデル修正"
 
 #. module: account
 #: selection:account.invoice.refund,filter_refund:0
@@ -6623,7 +6642,7 @@ msgstr "未完了取引"
 #: code:addons/account/models/account_invoice.py:116
 #, python-format
 msgid "Outstanding credits"
-msgstr ""
+msgstr "未消込クレジット"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_invoice_outstanding_credits_debits_widget
@@ -6634,7 +6653,7 @@ msgstr ""
 #: code:addons/account/models/account_invoice.py:119
 #, python-format
 msgid "Outstanding debits"
-msgstr ""
+msgstr "未消込支払"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_invoice_filter
@@ -9279,7 +9298,7 @@ msgstr ""
 #: code:addons/account/static/src/xml/account_reconciliation.xml:21
 #, python-format
 msgid "Tip: Hit CTRL-Enter to reconcile all the balanced items in the sheet."
-msgstr ""
+msgstr "ヒント: CTRL+Enterで、シート内で貸借一致したすべての項目を消し込むことができます。"
 
 #. module: account
 #: selection:account.financial.report,style_overwrite:0
@@ -9585,7 +9604,7 @@ msgstr "仕訳明細消込取消"
 #. module: account
 #: model:ir.ui.view,arch_db:account.account_unreconcile_view
 msgid "Unreconcile Transactions"
-msgstr ""
+msgstr "トランザクション消込取消"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.view_account_move_line_filter
@@ -9635,7 +9654,7 @@ msgstr "SEPA支払を使用"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_move_reversal_journal_id
 msgid "Use Specific Journal"
-msgstr ""
+msgstr "仕訳帳を指定"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_res_company_anglo_saxon_accounting
@@ -10446,7 +10465,7 @@ msgstr "があります。未消込入金を割り当ててこの請求書を支
 #. module: account
 #: model:ir.ui.view,arch_db:account.invoice_supplier_form
 msgid "for this supplier. You can allocate them to mark this bill as paid."
-msgstr ""
+msgstr "があります。未消込支払を割り当ててこの請求書を支払済にしてください。"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.account_invoice_report_duplicate
@@ -10463,7 +10482,7 @@ msgstr "または"
 #. module: account
 #: model:ir.ui.view,arch_db:account.invoice_supplier_form
 msgid "outstanding debits"
-msgstr ""
+msgstr "未消込支払"
 
 #. module: account
 #: model:ir.ui.view,arch_db:account.invoice_form
@@ -10600,3 +10619,11 @@ msgstr "wizard.multi.charts.accounts"
 #: model:ir.ui.view,arch_db:account.view_bank_statement_form
 msgid "→ Count"
 msgstr "合計"
+
+#. module: account
+#: code:addons/account/models/account.py:309
+#, python-format
+msgid ""
+"Currency field should only be set if the journal's currency is different "
+"from the company's. Leave the field blank to use company currency."
+msgstr ""

@@ -104,6 +104,23 @@ QUnit.module('Views', {
         pivot.destroy();
     });
 
+    QUnit.test('pivot rendering with widget', function (assert) {
+        assert.expect(1);
+
+        var pivot = createView({
+            View: PivotView,
+            model: "partner",
+            data: this.data,
+            arch: '<pivot string="Partners">' +
+                        '<field name="foo" type="measure" widget="float_time"/>' +
+                '</pivot>',
+        });
+
+        assert.strictEqual(pivot.$('td.o_pivot_cell_value:contains(32:00)').length, 1,
+                    "should contain a pivot cell with the sum of all records");
+        pivot.destroy();
+    });
+
     QUnit.test('pivot view without "string" attribute', function (assert) {
         assert.expect(1);
 
@@ -801,6 +818,80 @@ QUnit.module('Views', {
         pivot.$('ul.o_pivot_field_menu > li[data-field="product_id"] a').click();
         assert.deepEqual(pivot.getContext(), {
             pivot_column_groupby: ['date:day', 'customer'],
+            pivot_measures: ['foo'],
+            pivot_row_groupby: ['product_id'],
+        }, "context should be correct");
+
+        pivot.destroy();
+    });
+
+    QUnit.test('correctly remove pivot_ keys from the context', function (assert) {
+        assert.expect(5);
+
+        this.data.partner.fields.amount = {string: "Amount", type: "float"};
+
+        // Equivalent to loading with default filter
+        var pivot = createView({
+            View: PivotView,
+            model: "partner",
+            data: this.data,
+            arch: '<pivot>' +
+                        '<field name="date" interval="day" type="col"/>' +
+                        '<field name="amount" type="measure"/>' +
+                '</pivot>',
+            viewOptions: {
+                context: {
+                    pivot_measures: ['foo'],
+                    pivot_column_groupby: ['customer'],
+                    pivot_row_groupby: ['product_id'],
+                },
+            },
+        });
+
+        // Equivalent to unload the filter
+        var reloadParams = {
+            context: {},
+        };
+        pivot.reload(reloadParams);
+
+        assert.deepEqual(pivot.getContext(), {
+            pivot_column_groupby: ['customer'],
+            pivot_measures: ['foo'],
+            pivot_row_groupby: ['product_id'],
+        }, "context should be correct");
+
+        // Let's get rid of the rows groupBy
+        pivot.$('tbody .o_pivot_header_cell_opened').click();
+
+        assert.deepEqual(pivot.getContext(), {
+            pivot_column_groupby: ['customer'],
+            pivot_measures: ['foo'],
+            pivot_row_groupby: [],
+        }, "context should be correct");
+
+        // And now, get rid of the col groupby
+        pivot.$('thead .o_pivot_header_cell_opened').click();
+
+        assert.deepEqual(pivot.getContext(), {
+            pivot_column_groupby: [],
+            pivot_measures: ['foo'],
+            pivot_row_groupby: [],
+        }, "context should be correct");
+
+        pivot.$('tbody .o_pivot_header_cell_closed').click();
+        pivot.$('.o_pivot_field_menu li[data-field=product_id] a').click();
+
+        assert.deepEqual(pivot.getContext(), {
+            pivot_column_groupby: [],
+            pivot_measures: ['foo'],
+            pivot_row_groupby: ['product_id'],
+        }, "context should be correct");
+
+        pivot.$('thead .o_pivot_header_cell_closed').click();
+        pivot.$('.o_pivot_field_menu li[data-field=customer] a').click();
+
+        assert.deepEqual(pivot.getContext(), {
+            pivot_column_groupby: ['customer'],
             pivot_measures: ['foo'],
             pivot_row_groupby: ['product_id'],
         }, "context should be correct");
